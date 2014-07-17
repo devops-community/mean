@@ -1,0 +1,42 @@
+---
+id: mean-build
+name: Build the Mean Application
+type: task
+
+targets:
+  - mean-node
+
+triggers:
+  webhooks:
+    - path: rebuild/mean/app
+
+vars:
+  domain: example.com
+  mean_dir: /opt/meanjs
+  mean_git: https://github.com/meanjs/mean.git
+  mean_bind: 127.0.0.1
+  mean_port: 3000
+
+steps:
+  - run: sudo mkdir -p {{ mean_dir }} && sudo chown devops {{ mean_dir }}
+  - run: devops common git_clone
+    options:
+      git_repo_address: "{{ mean_git }}"
+      git_repo_dest: "{{ mean_dir }}"
+  - run: devops nginx add_http_vhost
+    options:
+      domain: "{{ domain }}"
+      port: 80
+      routes:
+        - uri: /
+          type: proxy
+          to: http://{{ mean_bind }}:{{ mean_port }}
+  - run: devops scripts/mean-build.sh
+  - run: devops nodejs app_add
+    options:
+      name: mean_app
+      root: "{{ mean_dir }}"
+      script: server.js
+      node_env: production
+      user: devops
+

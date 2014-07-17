@@ -1,0 +1,22 @@
+---
+id: mean-node
+name: Mean Node
+type: server
+
+provider:
+  name:
+  size:
+  location:
+  image: ubuntu14.04
+
+services:
+  mongodb: '*'
+  nodejs: '*'
+  nginx: '*'
+  
+configuration:
+  nodejs:
+    packages:
+      - bower
+      - grunt-cli
+
