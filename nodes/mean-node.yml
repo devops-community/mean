@@ -3,18 +3,33 @@ id: mean-node
 name: Mean Node
 type: server
 
+# Fill the details about the provider
 provider:
   name:
   size:
   location:
   image: ubuntu14.04
 
+vars: 
+  # Define the DNS resolvable domain used by the mean app 
+  mean_domain: 
+
 services:
   mongodb: '*'
   nodejs: '*'
   nginx: '*'
-  
+
 configuration:
+  nginx:
+    # Define the nginx vhost used to proxy requests to the nodejs mean backend
+    vhosts:
+      - domain: "{{ mean_domain }}"
+        port: 80
+        routes:
+          - uri: /
+            type: proxy
+            to: http://127.0.0.1:3000
+
   nodejs:
     packages:
       - bower
