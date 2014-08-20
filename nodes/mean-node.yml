@@ -24,7 +24,8 @@ configuration:
   nginx:
     # Define the nginx vhost used to proxy requests to the nodejs mean backend
     vhosts:
-      - domain: "{{ mean_domain }}"
+      meanapp:
+        domain: "{{ mean_domain }}"
         port: 80
         routes:
           - uri: /
