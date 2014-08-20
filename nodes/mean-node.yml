@@ -12,7 +12,8 @@ provider:
 
 vars: 
   # Define the DNS resolvable domain used by the mean app 
-  mean_domain: 
+  # '_' stands for "reply to every domain / ip"
+  mean_domain: _
 
 services:
   mongodb: '*'
