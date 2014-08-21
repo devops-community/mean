@@ -18,17 +18,19 @@ steps:
   # Clone or update the mean app
   - run: devops git update
     options:
-      repo: "{{ mean_git }}"
-      dest: "{{ mean_dir }}"
+      repo: '{{ mean_git }}'
+      dest: '{{ mean_dir }}'
 
   # Run the required build operations
   - run: devops scripts/mean-build.sh
+    options:
+      WORKDIR: '{{ mean_dir }}'
 
   # Register the new nodejs application to start at boot
   - run: devops nodejs app_add
     options:
       name: mean_app
-      root: "{{ mean_dir }}"
+      root: '{{ mean_dir }}'
       script: server.js
       node_env: production
       user: devops

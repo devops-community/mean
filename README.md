@@ -8,9 +8,9 @@ Build and deploy a node with an app based on the [mean framework](http://meanjs.
 
 The node is built-in with:
 
-- nodejs; including bower, grunt and forever. It is meant to run the app itself
-- nginx; will act as the web frontend
-- mongodb; is the database
+- __Nginx__; will act as the web frontend
+- __NodeJS__; including bower, grunt and forever. It is meant to run the app itself
+- __MongoDB__; is the database
 
 ## Task
 
@@ -51,7 +51,6 @@ Refer to the [documentation](http://docs.devo.ps) for more details.
 
 You will need to adapt the task definition as per your requirements:
 
-- `domain`: what domain you will use to access the application
 - webhooks `path`: if you want to be able to automatically trigger the build on POST request
 - other config if needed
 
@@ -62,4 +61,5 @@ The current repo provides a generic install, it needs to be customized to run as
 - have a fork of the meanjs repo with your custom code, and eventually setup a webhook to automatically re-run the build script upon commit in your github repo
 - update the build script to perform more setup (e.g. configuration file, api keys, etc.)
 - update the task itself to define other variables / commands to run on build
-- 
+
+

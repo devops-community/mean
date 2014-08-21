@@ -1,6 +1,11 @@
 #!/bin/bash
 
-cd {{ mean_dir }}
+
+# Loading the environment variables
+ROOT="$WORKDIR"
+
+# Let's work from the web folder
+cd $ROOT
 
 # Install the node packages
 npm install
