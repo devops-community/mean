@@ -15,7 +15,7 @@ It includes:
 
 1. Fork this repository using the "Fork on devo.ps" button.
 2. Navigate to the repos page.
-3. Activate the master branch; you will be prompted for some details (provider, server size, Git URL of your app...)/
+3. Activate the master branch; you will be prompted for some details (provider, server size, Git URL of your app...).
 
 You may as well use the task's webhook to build and deploy every time your commit a change to your app; simply point the [GitHub repository Webhook](https://developer.github.com/webhooks/creating/) to `https://wh.devo.ps/{USER}/{REPO}/rebuild/mean/app` (where `{USER}` is your username and `{REPO}` is the name of your forked repo in devo.ps). This will effectively trigger the build and deploy task every time GitHub registers a commit.
 
