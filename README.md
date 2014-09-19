@@ -13,8 +13,6 @@ It includes:
 
 ## Install & Run
 
-Simply use the link below:
-
 [![Fork on devo.ps](https://app.devo.ps/assets/images/fork.png)](https://app.devo.ps/#/fork?git_url=https://github.com/devops-community/mean)
 
 
