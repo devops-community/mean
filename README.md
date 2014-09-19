@@ -16,7 +16,7 @@ It includes:
 [![Fork on devo.ps](https://app.devo.ps/assets/images/fork.png)](https://app.devo.ps/#/fork?git_url=https://github.com/devops-community/mean)
 
 
-1. Fork this repository using the "Fork on devo.ps" button.
+1. **Fork this repository using the "Fork on devo.ps" button above**.
 2. Navigate to the repos page.
 3. Activate the master branch; you will be prompted for some details (provider, server size, Git URL of your app...).
 
