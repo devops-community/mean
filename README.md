@@ -1,65 +1,22 @@
-# Means
+# MEAN.js
 
-Build and deploy a node with an app based on the [mean framework](http://meanjs.org)
+Boilerplate setup to build and deploy [MEAN.js](http://meanjs.org) apps.
 
-# Repo details
+It includes:
 
-## Node
+- **1 server** (`nodes/mean-node.yml`) with:
+  - **Nginx** as a Web frontend,
+  - **NodeJS**, including `bower`, `grunt` and `forever`, to run the app.
+  - **MongoDB** for storage.
+- **1 build task** (`tasks/mean-build.yml`) which will fetch your MEAN.js app from GitHub, build the app and run it.
+- **1 task** that takes care of the app build (`npm install` and `grunt build`).
 
-The node is built-in with:
+## Install & Run
 
-- __Nginx__; will act as the web frontend
-- __NodeJS__; including bower, grunt and forever. It is meant to run the app itself
-- __MongoDB__; is the database
+1. Fork this repository using the "Fork on devo.ps" button.
+2. Navigate to the repos page.
+3. Activate the master branch; you will be prompted for some details (provider, server size, Git URL of your app...)/
 
-## Task
+You may as well use the task's webhook to build and deploy every time your commit a change to your app; simply point the [GitHub repository Webhook](https://developer.github.com/webhooks/creating/) to `https://wh.devo.ps/{USER}/{REPO}/rebuild/mean/app` (where `{USER}` is your username and `{REPO}` is the name of your forked repo in devo.ps). This will effectively trigger the build and deploy task every time GitHub registers a commit.
 
-A build task is provided that will perform the following upon run:
-
-- prepare the meanjs workdir
-- clone (a) the meanjs repo from github
-- run a build script that will install meanjs, including the dependencies and the configuration
-- setup a nginx virtual host that will serve and proxy the app
-- run the meanjs app production ready via foreverd
-
-## Script
-
-A simple bash script is provided to perform the basic build of the meanjs app, including:
-
-- npm install
-- grunt build
-
-This script is easily customizable to include more tuning and changes of configuration as per your app requirements.
-
-# Install
-
-To provision the node, you need to activate your repository at https://app.devo.ps/#/user/mean/settings.
-
-But before enabling the repository, you will need to perform some changes in the provided node and task definitions.
-
-## Node
-
-You will need to specify in the node definition:
-
-- the provider details; `name`, `size` and `location` - you need to have the provider defined in your profile
-- extra packages to install on the server
-- extra configuration of the installed services
-
-Refer to the [documentation](http://docs.devo.ps) for more details.
-
-## Task
-
-You will need to adapt the task definition as per your requirements:
-
-- webhooks `path`: if you want to be able to automatically trigger the build on POST request
-- other config if needed
-
-# Customization
-
-The current repo provides a generic install, it needs to be customized to run as per your requirements / code. You may consider the following:
-
-- have a fork of the meanjs repo with your custom code, and eventually setup a webhook to automatically re-run the build script upon commit in your github repo
-- update the build script to perform more setup (e.g. configuration file, api keys, etc.)
-- update the task itself to define other variables / commands to run on build
-
-
+You can obfuscate this Webhook URL in the `tasks/mean-build.yml` file (see the `webhooks` attribute).
