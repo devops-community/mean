@@ -9,6 +9,8 @@ targets:
 triggers:
   webhooks:
     - path: rebuild/mean/app
+  events:
+    - node.mean-node.create.success
 
 vars:
   mean_dir: /opt/meanjs
