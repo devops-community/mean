@@ -12,27 +12,24 @@ triggers:
   events:
     - node.mean-node.create.success
 
-vars:
-  mean_dir: /opt/meanjs
-  mean_git: https://github.com/meanjs/mean.git
 
 steps:
   # Clone or update the mean app
   - run: devops git update
     options:
-      repo: '{{ mean_git }}'
-      dest: '{{ mean_dir }}'
+      repo: '{{ git_url }}'
+      dest: '/opt/{{ app_name }}'
 
   # Run the required build operations
   - run: devops scripts/mean-build.sh
     options:
-      WORKDIR: '{{ mean_dir }}'
+      WORKDIR: '/opt/{{ app_name }}'
 
   # Register the new nodejs application to start at boot
   - run: devops nodejs app_add
     options:
       name: mean_app
-      root: '{{ mean_dir }}'
+      root: '/opt/{{ app_name }}'
       script: server.js
       node_env: production
       user: devops

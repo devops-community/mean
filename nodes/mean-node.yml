@@ -6,8 +6,8 @@ type: server
 # Define the provider details - both location and image are optional
 # Refer to the documentation to know more about the defaults
 provider:
-  name:
-  size:
+  name: "{{ provider.name }}"
+  size: "{{ provider.size }}"
   # location:
   # image: 
 
@@ -20,7 +20,7 @@ configuration:
   nginx:
     # Define the nginx vhost used to proxy requests to the nodejs mean backend
     vhosts:
-      - id: mean
+      - id: "{{ app_name }}"
         routes:
           - uri: /
             type: proxy
