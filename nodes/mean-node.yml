@@ -12,11 +12,19 @@ provider:
   # image: 
 
 services:
+  backup: '*'
   mongodb: '*'
   nodejs: '*'
   nginx: '*'
 
 configuration:
+  # backup:
+  #   # Define local cron to run the backup
+  #   schedules:
+  #     - '0 3 * * *'
+  #   # And save the archive in a "daily" folder
+  #   path: '/opt/backup/%Y/%m/%d/daily'
+
   nginx:
     # Define the nginx vhost used to proxy requests to the nodejs mean backend
     vhosts:
