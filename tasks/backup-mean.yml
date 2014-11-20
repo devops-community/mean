@@ -1,0 +1,27 @@
+# Find out more about tasks: http://docs.devo.ps/manual/tasks
+
+id: backup-mean
+name: Backup Laravel
+type: task
+
+targets:
+  - mean-node
+
+triggers:
+  crons:
+    # At 4am every day
+    - '0 4 * * *'
+  webhooks: 
+    - path: backup/mean
+
+steps:
+  # Backup the Mongo database and workdir
+  - run: devops backup run
+    options:
+      path: '/opt/backup/%Y/%m/%d/%H-%M/mean'
+      files:
+        - '/opt/{{ app_name }}'
+      mongodb_dbs:
+        - mean
+
+  # All the backups are available in /opt/backup/YYYY/MM/DD/HH-MM/mean
